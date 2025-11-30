@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once 'config/database.php'; //include PDO
+    require_once 'config/database.php'; //include PDO,Controller,Model
 
     //Khởi tạo Controller với PDO
     $controller = new RegisterController($pdo);

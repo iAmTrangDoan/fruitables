@@ -1,8 +1,8 @@
 <?php
-    // Ngăn truy cập trực tiếp vào file
-    if (!defined('ACCESS_ALLOWED')) {
-        die('Direct access not allowed');
-    } 
+    // // Ngăn truy cập trực tiếp vào file
+    // if (!defined('ACCESS_ALLOWED')) {
+    //     die('Direct access not allowed');
+    // } 
 
     $host='localhost';
     $dbname='organic_store';

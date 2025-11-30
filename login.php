@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    require_once 'config/database.php';
+
+    $controller= new LoginController($pdo);
+    $controller->login();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -124,9 +132,27 @@
             <div class="container py-5 text-center">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <h4 class="mb-3 text-secondary">Welcome Back</h4>
                         <h3 class="mb-5 display-3 text-primary">Login to Your Account</h3>
-                        <form action="#" method="post" class="bg-light p-5 rounded">
+
+                         <!-- Hiển thị lỗi/thành công -->
+                        <div id="error-messages" class="mb-3">
+                            <?php
+                            if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
+                                echo '<div class="alert alert-danger">';
+                                foreach ($_SESSION['errors'] as $error) {
+                                    echo "<p class='mb-1'>$error</p>";
+                                }
+                                echo '</div>';
+                                unset($_SESSION['errors']);
+                            }
+                            if (isset($_SESSION['success'])) {
+                                echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
+                                unset($_SESSION['success']);
+                            }
+                            ?>
+                        </div>
+
+                        <form action="" method="post" class="bg-light p-5 rounded">
                             <div class="row g-3">
                                 <div class="col-12">
                                     <label for="email" class="form-label">Email</label>
@@ -135,14 +161,6 @@
                                 <div class="col-12">
                                     <label for="password" class="form-label">Password</label>
                                     <input type="password" class="form-control" id="password" name="password" required>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="rememberMe">
-                                        <label class="form-check-label" for="rememberMe">
-                                            Remember me
-                                        </label>
-                                    </div>
                                 </div>
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary py-3 px-5">Login</button>

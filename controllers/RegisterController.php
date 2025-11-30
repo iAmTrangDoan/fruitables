@@ -1,7 +1,7 @@
 <?php
-    if (!defined('ACCESS_ALLOWED')) {
-    die('Direct access not allowed');
-    }
+    // if (!defined('ACCESS_ALLOWED')) {
+    // die('Direct access not allowed');
+    // }
 
     class RegisterController{
         private $pdo;
@@ -14,7 +14,7 @@
             $this->userModel=new UserModel($pdo); //Khởi tạo Model và truyền db vào
         }
 
-        public function validateInput($data){
+        private function validateInput($data){
             return htmlspecialchars(stripslashes(trim($data)));
         }
 
@@ -47,15 +47,21 @@
                 if(empty($errors)){
 
                     try{
-                           //Kiểm tra trùng email
+
                         if($this->userModel->checkEmail($email))
                             $error[]="Email already exists";
                         else{
-                            $hashedPassword=password_hash($password,PASSWORD_DEFAULT);
+                            $hashedPassword=password_hash($password,PASSWORD_DEFAULT); //hàm mã hóa bcrypt mật khẩu một chiều, không thể giải mã ngược lại
                             $userID=$this->userModel->addUser($firstName,$lastName,$email,$hashedPassword);
-                            
-                            //Đi tới trang login
-                            header("Location: login.php");
+                            $user = [
+                                'user_id'   => $userID,
+                                'firstName' => $firstName,
+                                'lastName'  => $lastName,
+                                'email'     => $email
+                            ];
+
+                            $_SESSION['user'] = $user;
+                            header("Location: home.php");
                             exit();
                     }
                     }catch (Exception $e) {

@@ -1,8 +1,8 @@
 <?php
-    // Ngăn truy cập trực tiếp
-    if (!defined('ACCESS_ALLOWED')) {
-        die('Direct access not allowed');
-    }
+    // // Ngăn truy cập trực tiếp
+    // if (!defined('ACCESS_ALLOWED')) {
+    //     die('Direct access not allowed');
+    // }
 
     class UserModel{
         private $pdo;
@@ -84,6 +84,34 @@
             }
         }
          
+        //Xác thực tài khoản
+
+        public function authenticateUser($email,$password){
+            try{
+                $sql="SELECT * FROM users WHERE email= ?";
+                $stmt=$this->pdo->prepare($sql);
+                $stmt->bindParam(1,$email,PDO::PARAM_STR);
+                $stmt->execute();
+                $user=$stmt->fetch(PDO::FETCH_ASSOC);
+                
+                //Hàm password_verify so sánh password plain text từ form với hash từ DB. 
+                //Tự động xử lý việc hash password nhập vào và so sánh với hash lưu trữ.
+                if ($user) {
+                    // Debug: log password nhập và hash từ DB
+                    error_log("Input password: $password");
+                    error_log("DB hash: " . $user['password']);
+                    error_log("Verify result: " . (password_verify($password, $user['password']) ? 'true' : 'false'));
+                    
+                    if (password_verify($password, $user['password'])) {
+                        unset($user['password']);
+                        return $user;
+                    }
+                }
+                return false; //Nếu sai email hoặc pass
+            }catch(PDOException $e){
+                throw new Exception("Lỗi xác thực người dùng ".$e->getMessage());
+            }
+        }
     }
 
 ?>
