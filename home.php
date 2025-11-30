@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Fruitables - Vegetable Website Template</title>
+        <title>Fruitables - Vegetable Website </title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -43,8 +43,8 @@
             <div class="container topbar bg-primary d-none d-lg-block">
                 <div class="d-flex justify-content-between">
                     <div class="top-info ps-2">
-                        <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">123 Street, New York</a></small>
-                        <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">Email@Example.com</a></small>
+                        <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">180 Cao Lỗ, phường Chánh Hưng, TP.HCM</a></small>
+                        <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">trang.doanthuyen@gmail.com</a></small>
                     </div>
                     <div class="top-link pe-2">
                         <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
@@ -68,12 +68,13 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
                                     <a href="index.php?page=cart" class="dropdown-item">Cart</a>
-                                    <a href="index.php?page=checkout" class="dropdown-item">Chackout</a>
+                                    <a href="index.php?page=checkout" class="dropdown-item">Checkout</a>
                                     <a href="index.php?page=testimonial" class="dropdown-item">Testimonial</a>
                                     <a href="index.php?page=404" class="dropdown-item">404 Page</a>
                                 </div>
                             </div>
                             <a href="index.php?page=contact" class="nav-item nav-link">Contact</a>
+                             <a href="index.php?page=lab" class="nav-item nav-link">Practice Labs</a>
                         </div>
                         <div class="d-flex m-3 me-0">
                             <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
@@ -102,7 +103,7 @@
                     </div>
                     <div class="modal-body d-flex align-items-center">
                         <div class="input-group w-75 mx-auto d-flex">
-                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <input type="search" class="form-control p-3" placeholder="Nhập từ khóa" aria-describedby="search-icon-1">
                             <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                         </div>
                     </div>
@@ -129,11 +130,11 @@
                             <div class="carousel-inner" role="listbox">
                                 <div class="carousel-item active rounded">
                                     <img src="img/hero-img-1.png" class="img-fluid w-100 h-100 bg-secondary rounded" alt="First slide">
-                                    <a href="#" class="btn px-4 py-2 text-white rounded">Fruites</a>
+                                    <a href="#" class="btn px-4 py-2 text-white rounded">Fruits</a>
                                 </div>
                                 <div class="carousel-item rounded">
                                     <img src="img/hero-img-2.jpg" class="img-fluid w-100 h-100 rounded" alt="Second slide">
-                                    <a href="#" class="btn px-4 py-2 text-white rounded">Vesitables</a>
+                                    <a href="#" class="btn px-4 py-2 text-white rounded">Vegetables</a>
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
@@ -163,7 +164,7 @@
                             </div>
                             <div class="featurs-content text-center">
                                 <h5>Free Shipping</h5>
-                                <p class="mb-0">Free on order over $300</p>
+                                <p class="mb-0">Miễn phí cho đơn hàng trên 300.000VNĐ</p>
                             </div>
                         </div>
                     </div>
@@ -174,7 +175,7 @@
                             </div>
                             <div class="featurs-content text-center">
                                 <h5>Security Payment</h5>
-                                <p class="mb-0">100% security payment</p>
+                                <p class="mb-0">Thanh toán an toàn 100%</p>
                             </div>
                         </div>
                     </div>
@@ -185,7 +186,7 @@
                             </div>
                             <div class="featurs-content text-center">
                                 <h5>30 Day Return</h5>
-                                <p class="mb-0">30 day money guarantee</p>
+                                <p class="mb-0">Được trả hàng trong vòng 30 ngày</p>
                             </div>
                         </div>
                     </div>
@@ -196,7 +197,7 @@
                             </div>
                             <div class="featurs-content text-center">
                                 <h5>24/7 Support</h5>
-                                <p class="mb-0">Support every time fast</p>
+                                <p class="mb-0">Hỗ trợ nhanh chóng 24/7</p>
                             </div>
                         </div>
                     </div>
@@ -766,11 +767,11 @@
         <!-- Banner Section End -->
 
 
-        <!-- Bestsaler Product Start -->
+        <!-- Best Seller Product Start -->
         <div class="container-fluid py-5">
             <div class="container py-5">
                 <div class="text-center mx-auto mb-5" style="max-width: 700px;">
-                    <h1 class="display-4">Bestseller Products</h1>
+                    <h1 class="display-4">Best Seller Products</h1>
                     <p>Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
                 </div>
                 <div class="row g-4">

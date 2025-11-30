@@ -1,5 +1,5 @@
 <?php
-    include("config.php");
+    require 'config/config.php';
     $page=isset($_GET['page']) ? $_GET['page'] : 'home';
     switch($page){
         case 'login':
@@ -32,6 +32,10 @@
         case 'checkout':
             include("checkout.php");
             break;
+        case 'lab':
+            include("lab.php");
+            break;
+
         default:
             include("404.php");
             break;
