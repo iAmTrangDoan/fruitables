@@ -1,6 +1,19 @@
 <?php
-    if(password_verify('123456789','$2y$10$baawUh9Z0Vba2Gr7kmUWUeopkHYvoB5kdemIxtRTq6KgPCmHY4YOy'))
-        echo "Mật khẩu đúng";
-    else    
-        echo "Sai mật khẩu";
+    session_start();
+    define('ACCESS_ALLOWED', true);
+    require_once 'config/database.php';
+
+    $controller = new ShopController($pdo);
+    $shopData = $controller->loadData();
+
+    if(isset($shopData['error'])){
+        echo "<p>Error: ".$shopData['error']."</p>";
+        exit();
+    }
+    
+    $categories=$shopData['categories']??[];
+    $products=$shopData['products']??[];
+
+    foreach($categories as $object)
+        echo $object['product_count'];
 ?>

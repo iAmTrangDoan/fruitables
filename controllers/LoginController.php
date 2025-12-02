@@ -1,7 +1,7 @@
 <?php
-    //  if (!defined('ACCESS_ALLOWED')) {
-    // die('Direct access not allowed');
-    // }
+     if (!defined('ACCESS_ALLOWED')) {
+    die('Direct access not allowed');
+    }
     
     class LoginController{
         private $pdo;

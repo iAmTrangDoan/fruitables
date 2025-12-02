@@ -1,11 +1,12 @@
 <?php
     session_start();
+    define('ACCESS_ALLOWED', true);
     require_once 'config/database.php';
 
-    if (!isset($_SESSION['user'])) {
-        header("Location: login.php");
-        exit();
-    }
+    // if (!isset($_SESSION['user'])) {
+    //     header("Location: login.php");
+    //     exit();
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -73,16 +74,9 @@
                         <div class="navbar-nav mx-auto">
                             <a href="index.php?page=home" class="nav-item nav-link active">Home</a>
                             <a href="index.php?page=shop" class="nav-item nav-link">Shop</a>
-                            <a href="index.php?page=shop_detail" class="nav-item nav-link">Shop Detail</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                    <a href="index.php?page=cart" class="dropdown-item">Cart</a>
-                                    <a href="index.php?page=checkout" class="dropdown-item">Checkout</a>
-                                    <a href="index.php?page=testimonial" class="dropdown-item">Testimonial</a>
-                                    <a href="index.php?page=404" class="dropdown-item">404 Page</a>
-                                </div>
-                            </div>
+                          
+                            <a href="index.php?page=cart" class="nav-item nav-link">Cart</a>
+                            <a href="index.php?page=testimonial" class="nav-item nav-link">Testimonial</a>
                             <a href="index.php?page=contact" class="nav-item nav-link">Contact</a>
                              <a href="index.php?page=lab" class="nav-item nav-link">Practice Labs</a>
                         </div>
@@ -92,9 +86,16 @@
                                 <i class="fa fa-shopping-bag fa-2x"></i>
                                 <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
                             </a>
-                            <a href="#" class="my-auto">
-                                <i class="fas fa-user fa-2x"></i>
-                            </a>
+                             <div class="dropdown">
+                                <a href="#" class="my-auto dropdown-toggle" data-bs-toggle="dropdown">
+                                    <i class="fas fa-user fa-2x"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="login.php">Đăng nhập</a></li>
+                                    <li><a class="dropdown-item" href="register.php">Đăng ký</a></li>
+                                    <li><a class="dropdown-item" href="logout.php">Đăng xuất</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </nav>
