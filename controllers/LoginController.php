@@ -41,11 +41,21 @@
                             $_SESSION['user_name'] = $user['first_name'] . ' ' . $user['last_name'];
                             $_SESSION['user_email'] = $user['email'];
                             $_SESSION['user_role'] = $user['role'];
-
-                            $success = "Login successful! Welcome back.";
                             $_SESSION['success'] = $success;
-                            header("Refresh: 2; url=index.php?page=home");
-                            exit();
+                            if ($_SESSION['user_role'] == 'customer') {
+                                header("Location: home.php");
+                                exit();
+                            } elseif ($_SESSION['user_role'] == 'admin') { // Chỉ chuyển hướng 'admin' đến khu vực admin
+                                header("Location: admin/index.php");
+                                exit();
+                            } else {
+                                // Xử lý các vai trò không xác định hoặc không được phép (ví dụ: đăng xuất và thông báo lỗi)
+                                $errors[] = "Role not recognized or authorized.";
+                                $_SESSION['errors'] = $errors;
+                                header("Location: login.php");
+                                exit();
+                            }
+                            
                         }else {
                             $errors[] = "Invalid email or password.";
                         }

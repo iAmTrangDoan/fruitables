@@ -1,6 +1,5 @@
 <?php
     session_start();
-    define('ACCESS_ALLOWED', true);
     require_once 'config/database.php';
 
     $controller = new ShopController($pdo);
@@ -12,7 +11,7 @@
     }
     
     $categories=$shopData['categories']??[];
-    $products=$shopData['products']??[];
+    $products=$shopData['all_products']??[];
 
 
 ?>

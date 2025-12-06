@@ -1,6 +1,6 @@
 <?php
-// // Định nghĩa hằng để cho phép include
-// define('ACCESS_ALLOWED', true);
+// Định nghĩa hằng để cho phép include
+define('ACCESS_ALLOWED', true);
 
 // Include config để có $pdo
 require_once 'config/config.php';

@@ -25,5 +25,18 @@
             }
             
         }
+
+        public function getProductsByCategory($categoryId){
+            try {
+                $sql = "SELECT * FROM products WHERE category_id = ?";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindParam(1, $categoryId, PDO::PARAM_INT);
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch(PDOException $e) {
+                throw new Exception("Lỗi lấy sản phẩm theo danh mục ID: " . $categoryId . " " . $e->getMessage());
+            }
+        }
+
     }
 ?>

@@ -19,15 +19,27 @@
         public function loadData(){
             $data=[];
             try{
-                $data['categories']=$this->categoryModel->getCategories();
-                $data['products']=$this->productModel->getProducts();
+                $categories=$this->categoryModel->getCategories();
+                $data['categories']=$categories;
 
+                $data['all_products']=$this->productModel->getProducts();
+
+                $data['grouped_products'] = [];
+
+                foreach($categories as $category){
+                    $categoryId=$category['id'];
+                    $products_of_category=$this->productModel->getProductsByCategory($categoryId);
+                    $data['grouped_products'][$categoryId] = $products_of_category;
+                }
+               
                 foreach($data['categories'] as &$category)
                     $category['product_count'] = $this->categoryModel->countProducts($category['id']);
+                
             }catch(PDOException $e){
                 $data['error']=$e->getMessage();
             }
             return $data;
         }
     }
+        
 ?>

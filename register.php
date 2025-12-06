@@ -1,6 +1,5 @@
 <?php
     session_start();
-    define('ACCESS_ALLOWED', true);
     require_once 'config/database.php'; //include PDO,Controller,Model
 
     //Khởi tạo Controller với PDO
