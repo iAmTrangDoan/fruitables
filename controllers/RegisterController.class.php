@@ -1,7 +1,7 @@
 <?php
-    // if (!defined('ACCESS_ALLOWED')) {
-    // die('Direct access not allowed');
-    // }
+    if (!defined('ACCESS_ALLOWED')) {
+    die('Direct access not allowed');
+    }
 
     class RegisterController{
         private $pdo;
@@ -49,18 +49,15 @@
                     try{
 
                         if($this->userModel->checkEmail($email))
-                            $error[]="Email already exists";
+                            $errors[]="Email already exists";
                         else{
                             $hashedPassword=password_hash($password,PASSWORD_DEFAULT); //hàm mã hóa bcrypt mật khẩu một chiều, không thể giải mã ngược lại
                             $userID=$this->userModel->addUser($firstName,$lastName,$email,$hashedPassword);
-                            $user = [
-                                'user_id'   => $userID,
-                                'firstName' => $firstName,
-                                'lastName'  => $lastName,
-                                'email'     => $email
-                            ];
+                           $_SESSION['user_id']   = $userID;
+                            $_SESSION['user_name'] = $firstName . ' ' . $lastName;
+                            $_SESSION['user_email'] = $email;
+                            $_SESSION['user_role']  = 'customer'; 
 
-                            $_SESSION['user'] = $user;
                             header("Location: home.php");
                             exit();
                     }

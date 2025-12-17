@@ -1,8 +1,5 @@
 <?php
-    // // Ngăn truy cập trực tiếp
-    // if (!defined('ACCESS_ALLOWED')) {
-    //     die('Direct access not allowed');
-    // }
+  
 
     class UserModel{
         private $pdo;
@@ -110,6 +107,25 @@
                 return false; //Nếu sai email hoặc pass
             }catch(PDOException $e){
                 throw new Exception("Lỗi xác thực người dùng ".$e->getMessage());
+            }
+        }
+
+        public function getAllUsers($role = null) {
+            try {
+                $sql = "SELECT id, first_name, last_name, email, role, created_at FROM users";
+                $params = [];
+                
+                if ($role !== null) {
+                    $sql .= " WHERE role = ?";
+                    $params[] = $role;
+                }
+                $sql .= " ORDER BY id ASC";
+
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->execute($params);
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch(PDOException $e) {
+                throw new Exception("Lỗi lấy danh sách người dùng: " . $e->getMessage());
             }
         }
     }

@@ -8,6 +8,8 @@
     $categories=$shopData['categories']??[];
     $allProducts=$shopData['all_products']??[];
     $groupedProducts=$shopData['grouped_products']??[];
+    //Chỉ lấy 8 sản phẩm hiển thị cho All Products
+    $homeProducts = array_slice($allProducts, 0, 8);
     
     
 ?>
@@ -79,7 +81,7 @@
                             <a href="shop.php" class="nav-item nav-link">Shop</a>
                           
                             <a href="cart.php" class="nav-item nav-link">Cart</a>
-                            <a href="checkout.php" class="nav-item nav-link">Checkout</a>
+                            <a href="orders.php" class="nav-item nav-link">Orders</a>
                             <a href="contact.php" class="nav-item nav-link">Contact</a>
                              <a href="lab.php" class="nav-item nav-link">Practice Labs</a>
                         </div>
@@ -89,14 +91,23 @@
                                 <i class="fa fa-shopping-bag fa-2x"></i>
                                 <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
                             </a>
-                             <div class="dropdown">
+                            <div class="dropdown">
                                 <a href="#" class="my-auto dropdown-toggle" data-bs-toggle="dropdown">
                                     <i class="fas fa-user fa-2x"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="login.php">Đăng nhập</a></li>
-                                    <li><a class="dropdown-item" href="register.php">Đăng ký</a></li>
-                                    <li><a class="dropdown-item" href="logout.php">Đăng xuất</a></li>
+                                    <?php if (!isset($_SESSION['user_id'])): ?>
+                                        <li>
+                                            <a class="dropdown-item" href="login.php">Đăng nhập</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="register.php">Đăng ký</a>
+                                        </li>
+                                    <?php else: ?>
+                                        <li>
+                                            <a class="dropdown-item" href="logout.php">Đăng xuất</a>
+                                        </li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -251,7 +262,7 @@
                             <div class="row g-4">
                                 <div class="col-lg-12">
                                     <div class="row g-4">
-                                        <?php foreach($allProducts as $product):?>
+                                        <?php foreach($homeProducts as $product):?>
                                             <?php include 'partials/product_card.php' ?>
                                        <?php endforeach; ?>
                                     </div>

@@ -1,6 +1,6 @@
 <div class="col-md-6 col-lg-4 col-xl-3">
     <div class="rounded position-relative fruite-item">
-        <div class="fruite-img">
+        <div class="fruite-img ratio ratio-1x1 border border-secondary rounded-top overflow-hidden">
             <img src="<?php echo htmlspecialchars($product['image_url'] ?? ''); ?>" class="img-fluid w-100 rounded-top" alt="<?php echo htmlspecialchars($product['name'])?>">
         </div>
         <div class="p-4 border border-secondary border-top-0 rounded-bottom">

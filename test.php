@@ -1,23 +1,20 @@
 <?php
     session_start();
     require_once 'config/database.php';
-
-    $controller = new ShopController($pdo);
-    $shopData = $controller->loadData();
-
-    if(isset($shopData['error'])){
-        echo "<p>Error: ".$shopData['error']."</p>";
-        exit();
+    require_once 'models/CategoryModel.php';
+    require_once 'models/OrderModel.php';
+    $categories=new CategoryModel($pdo);
+    $order=new OrderModel($pdo);
+    $data=[];
+    $error=null;
+    try{
+        $data=$order->getAllOrders();
+    }catch(PDOException $e){
+        $error=$e->getMessage();
     }
     
-    $categories=$shopData['categories']??[];
-    $products=$shopData['products']??[];
-
-    // foreach($categories as $object)
-    //     print_r($object);
-     foreach($shopData as $data)
-        print_r($data);
-
+    foreach($data as $d)
+        print_r($d);
 
    
 ?>

@@ -36,6 +36,35 @@
             }
         }
 
+         public function getById($id)
+        {
+            $sql = "SELECT * FROM categories WHERE id = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$id]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function insert($name, $description)
+        {
+            $sql = "INSERT INTO categories(name, description) VALUES (?, ?)";
+            $stmt = $this->pdo->prepare($sql);
+            return $stmt->execute([$name, $description]);
+        }
+
+        public function update($id, $name, $description)
+        {
+            $sql = "UPDATE categories SET name = ?, description = ? WHERE id = ?";
+            $stmt = $this->pdo->prepare($sql);
+            return $stmt->execute([$name, $description, $id]);
+        }
+
+        public function delete($id)
+        {
+            $sql = "DELETE FROM categories WHERE id = ?";
+            $stmt = $this->pdo->prepare($sql);
+            return $stmt->execute([$id]);
+        }
+
 
     }
 ?>

@@ -297,9 +297,19 @@
     color: var(--bs-secondary);
 }
 
+.fruite-img img {
+    object-fit: cover;
+}
 .fruite .fruite-item {
     height: 100%;
     transition: 0.5s;
+    
+}
+
+.fruite .fruite-item p{
+    min-height: 40px; 
+    height: 4.5em;
+    overflow: hidden; 
 }
 .fruite .fruite-item:hover {
     box-shadow: 0 0 55px rgba(0, 0, 0, 0.4);
