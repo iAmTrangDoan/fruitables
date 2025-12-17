@@ -18,7 +18,7 @@ class ProductModel
      * @param int $limit Số sản phẩm trên mỗi trang (mặc định 9)
      * @param int $page Trang hiện tại (mặc định 1)
      */
-    public function getProducts($limit = 9, $page = 1, $categoryId = null)
+    public function getProducts($limit = 6, $page = 1, $categoryId = null)
     {
         try {
 

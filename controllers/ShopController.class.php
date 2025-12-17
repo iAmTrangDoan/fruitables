@@ -18,7 +18,7 @@
 
         public function loadData($page=1,$categoryId = null){
             $data=[];
-            $limit=9;
+            $limit=6;
             // Lấy trang hiện tại từ URL (nếu có, ví dụ: index.php?page=2)
             $currentPage = max(1, (int)($page)); // Đảm bảo trang >= 1
             // Đọc tham số lọc từ URL nếu chưa được truyền

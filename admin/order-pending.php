@@ -150,7 +150,7 @@
               </li>
 
               <li class="nav-item">
-                  <a href="logout.php" style="background-color: #3e4a59;"> 
+                  <a href="../logout.php" style="background-color: #3e4a59;"> 
                       <i class="fas fa-sign-out-alt"></i>
                       <p>Logout</p>
                   </a>
