@@ -1,31 +1,35 @@
-<?php 
-    class UserController{
-        private $model;
+<?php
+if (!defined('ACCESS_ALLOWED')) {
+    die('Direct access not allowed');
+}
 
-        public function __construct($pdo)
-        {
-            $this->model = new UserModel($pdo);
-        }
+class UserController
+{
+    private $model;
 
-        public function delete()
-        {
-            // Trang quay lại (fallback nếu không có)
-            $redirect = $_SERVER['HTTP_REFERER'] ?? 'index.php';
+    public function __construct($pdo)
+    {
+        $this->model = new UserModel($pdo);
+    }
 
-            if (!isset($_GET['id'])) {
-                header("Location: {$redirect}?error=missing_id");
-                exit;
-            }
+    public function delete()
+    {
+        //Quay lại trang trước đó
+        $redirect = $_SERVER['HTTP_REFERER'] ?? 'index.php';
 
-            $userId = (int) $_GET['id'];
-
-            try {
-                $this->model->deleteUser($userId);
-                header("Location: {$redirect}");
-            } catch (Exception $e) {
-                $e->getMessage();
-            }
+        if (!isset($_GET['id'])) {
+            header("Location: {$redirect}?error=missing_id");
             exit;
         }
+
+        $userId = (int) $_GET['id'];
+
+        try {
+            $this->model->deleteUser($userId);
+            header("Location: {$redirect}");
+        } catch (Exception $e) {
+            $e->getMessage();
+        }
+        exit;
     }
-?>
+}

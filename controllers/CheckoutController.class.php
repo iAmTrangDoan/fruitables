@@ -1,22 +1,27 @@
-<?php 
-    class CheckoutController {
-        protected $cartModel;
+<?php
+if (!defined('ACCESS_ALLOWED')) {
+    die('Direct access not allowed');
+}
 
-        public function __construct($pdo) {
-            $this->cartModel = new CartModel($pdo);
-        }
+class CheckoutController
+{
+    protected $cartModel;
 
-        public function index() {
-            $userId = $_SESSION['user_id'];
-            $cartItems = $this->cartModel->getCartByUser($userId);
-
-            if (empty($cartItems)) {
-                header("Location: cart.php");
-                exit;
-            }
-
-            require './checkout-list.php';
-        }
+    public function __construct($pdo)
+    {
+        $this->cartModel = new CartModel($pdo);
     }
 
-?>
+    public function index()
+    {
+        $userId = $_SESSION['user_id'];
+        $cartItems = $this->cartModel->getCartByUser($userId);
+
+        if (empty($cartItems)) {
+            header("Location: cart.php");
+            exit;
+        }
+
+        require './checkout-list.php';
+    }
+}

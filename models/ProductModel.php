@@ -13,11 +13,10 @@ class ProductModel
         $this->pdo = $pdo;
     }
 
-    /**
-     * Lấy sản phẩm có phân trang
-     * @param int $limit Số sản phẩm trên mỗi trang (mặc định 9)
-     * @param int $page Trang hiện tại (mặc định 1)
-     */
+    //  Lấy sản phẩm có phân trang
+    //  $limit Số sản phẩm trên mỗi trang (mặc định 6)
+    //  $page Trang hiện tại (mặc định 1)
+
     public function getProducts($limit = 6, $page = 1, $categoryId = null)
     {
         try {
@@ -37,12 +36,12 @@ class ProductModel
 
             $stmt = $this->pdo->prepare($sql);
 
-            // BIND THAM SỐ LỌC (nếu có)
+            // Tham số lọc theo category
             if ($categoryId !== null) {
                 $stmt->bindParam($paramIndex++, $categoryId, PDO::PARAM_INT);
             }
 
-            // BIND THAM SỐ PHÂN TRANG 
+            // tham số phân trang
             $stmt->bindParam($paramIndex++, $limit, PDO::PARAM_INT);
             $stmt->bindParam($paramIndex, $offset, PDO::PARAM_INT);
 
@@ -92,7 +91,6 @@ class ProductModel
     public function getProductsForAdmin()
     {
         try {
-            // Lấy tất cả sản phẩm, không giới hạn, sắp xếp theo ID
             $sql = "SELECT p.*, c.name AS category_name 
                         FROM products p
                         JOIN categories c ON p.category_id = c.id
@@ -170,5 +168,4 @@ class ProductModel
             throw new Exception("Lỗi xóa sản phẩm: " . $e->getMessage());
         }
     }
-
 }

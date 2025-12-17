@@ -4,14 +4,17 @@ if (!defined('ACCESS_ALLOWED')) {
 }
 
 
-class ProductController {
+class ProductController
+{
     private $model;
 
-    public function __construct($pdo) {
+    public function __construct($pdo)
+    {
         $this->model = new ProductModel($pdo);
     }
 
-    public function index() {
+    public function index()
+    {
         try {
             $data = $this->model->getProductsForAdmin();
             $error = null;
@@ -22,7 +25,7 @@ class ProductController {
         require '../admin/product-list.php';
     }
 
-    
+
     public function form()
     {
         $id = $_GET['id'] ?? null;
@@ -41,7 +44,7 @@ class ProductController {
     public function save()
     {
 
-         $data = [
+        $data = [
             'name' => $_POST['name'],
             'description' => $_POST['description'],
             'price' => $_POST['price'],
@@ -60,7 +63,7 @@ class ProductController {
         exit;
     }
 
-     public function delete()
+    public function delete()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             die('Invalid request');
@@ -77,7 +80,4 @@ class ProductController {
         header('Location: product-list.php');
         exit;
     }
-
-    
-
 }

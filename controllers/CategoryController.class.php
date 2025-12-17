@@ -41,7 +41,6 @@ class CategoryController
         require '../admin/category-add.php';
     }
 
-    // Xử lý submit form
     public function save()
     {
         $id = $_GET['id'] ?? null;
@@ -58,7 +57,6 @@ class CategoryController
         exit;
     }
 
-    // Xóa
     public function delete()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

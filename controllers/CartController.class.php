@@ -1,19 +1,27 @@
 <?php
+if (!defined('ACCESS_ALLOWED')) {
+    die('Direct access not allowed');
+}
 
-class CartController {
+
+class CartController
+{
     private $model;
 
-    public function __construct($pdo) {
+    public function __construct($pdo)
+    {
         $this->model = new CartModel($pdo);
     }
 
-    public function index() {
-        
+    public function index()
+    {
+
         $cartItems = $this->model->getCartByUser($_SESSION['user_id']);
         require './cart-list.php';
     }
 
-    public function add() {
+    public function add()
+    {
         $this->model->addOrUpdate(
             $_SESSION['user_id'],
             $_POST['product_id']
@@ -21,12 +29,9 @@ class CartController {
         header("Location: " . $_SERVER['HTTP_REFERER']);
     }
 
-    public function remove() {
+    public function remove()
+    {
         $this->model->remove($_GET['id']);
         header("Location: cart.php");
     }
-
-
 }
-
-?>

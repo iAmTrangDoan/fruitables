@@ -1,15 +1,21 @@
 
 <?php
 
+if (!defined('ACCESS_ALLOWED')) {
+    die('Direct access not allowed');
+}
 
-class OrderModel {
+class OrderModel
+{
     private $pdo;
 
-    public function __construct($pdo) {
+    public function __construct($pdo)
+    {
         $this->pdo = $pdo;
     }
 
-    public function createOrder($userId, $total, $address, $phone, $note) {
+    public function createOrder($userId, $total, $address, $phone, $note)
+    {
         $sql = "
             INSERT INTO orders (user_id, total_amount, shipping_address, phone, note)
             VALUES (:user_id, :total, :address, :phone, :note)
@@ -27,7 +33,8 @@ class OrderModel {
         return $this->pdo->lastInsertId();
     }
 
-    public function addOrderItem($orderId, $productId, $price, $quantity) {
+    public function addOrderItem($orderId, $productId, $price, $quantity)
+    {
         $sql = "
             INSERT INTO order_items (order_id, product_id, price, quantity)
             VALUES (?, ?, ?, ?)
@@ -36,28 +43,30 @@ class OrderModel {
         $stmt->execute([$orderId, $productId, $price, $quantity]);
     }
 
-    public function getAllOrders($status = null) {
+    public function getAllOrders($status = null)
+    {
         try {
             $sql = "SELECT o.*, u.first_name, u.last_name
                     FROM orders o
                     JOIN users u ON o.user_id = u.id";
             $params = [];
-            
+
             if ($status !== null) {
                 $sql .= " WHERE o.status = ?";
                 $params[] = $status;
-            }   
+            }
             $sql .= " ORDER BY o.id ASC";
 
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($params);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             throw new Exception("Lỗi lấy danh sách đơn hàng: " . $e->getMessage());
         }
     }
 
-    public function getOrdersByUser($userId) {
+    public function getOrdersByUser($userId)
+    {
         $stmt = $this->pdo->prepare("
             SELECT * FROM orders
             WHERE user_id = ?
@@ -67,7 +76,8 @@ class OrderModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getOrderById($orderId, $userId) {
+    public function getOrderById($orderId, $userId)
+    {
         $stmt = $this->pdo->prepare("
             SELECT * FROM orders
             WHERE id = ? AND user_id = ?
@@ -76,7 +86,8 @@ class OrderModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getOrderItems($orderId) {
+    public function getOrderItems($orderId)
+    {
         $stmt = $this->pdo->prepare("
             SELECT 
                 oi.quantity,
@@ -90,6 +101,4 @@ class OrderModel {
         $stmt->execute([$orderId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-
 }
