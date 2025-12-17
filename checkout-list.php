@@ -62,19 +62,18 @@
                     </button>
                     <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                         <div class="navbar-nav mx-auto">
-                            <a href="home.php" class="nav-item nav-link active">Home</a>
+                            <a href="home.php" class="nav-item nav-link ">Home</a>
                             <a href="shop.php" class="nav-item nav-link">Shop</a>
                           
-                            <a href="cart.php" class="nav-item nav-link">Cart</a>
+                            <a href="cart.php" class="nav-item nav-link active">Cart</a>
                             <a href="orders.php" class="nav-item nav-link">Orders</a>
                             <a href="contact.php" class="nav-item nav-link">Contact</a>
                              <a href="lab.php" class="nav-item nav-link">Practice Labs</a>
                         </div>
                         <div class="d-flex m-3 me-0">
                             <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                            <a href="#" class="position-relative me-4 my-auto">
+                            <a href="cart.php" class="position-relative me-4 my-auto">
                                 <i class="fa fa-shopping-bag fa-2x"></i>
-                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
                             </a>
                             <div class="dropdown">
                                 <a href="#" class="my-auto dropdown-toggle" data-bs-toggle="dropdown">

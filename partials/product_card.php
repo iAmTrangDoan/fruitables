@@ -10,7 +10,14 @@
                 <p class="text-dark fs-5 fw-bold mb-0">
                     <?php echo number_format($product['price'], 0, ',', '.') ?> VNĐ
                 </p>
-                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                 <form action="add-to-cart.php" method="POST">
+                    <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                    <!-- <button type="submit"
+                        class="btn border border-secondary rounded-pill px-3 text-primary">
+                        <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                        Add to cart
+                    </button> -->
+                </form>
             </div>
         </div>
     </div>

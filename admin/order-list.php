@@ -189,7 +189,6 @@
                           <th scope="col">Status</th>
                           <th scope="col">Order Date</th>
                           <th scope="col">Address</th>
-                          <th scope="col">Handle</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -201,10 +200,6 @@
                             <td><?php echo $order['status'] ?></td>
                             <td><?php echo $order['order_date'] ?></td>
                             <td><?php echo $order['shipping_address'] ?></td>
-                            <td>
-                                <a href="#">Delete</a>
-                                <a href="#">Edit</a>
-                            </td>
                             </tr>
                         <?php endforeach; ?>
                         

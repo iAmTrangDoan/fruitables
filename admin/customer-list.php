@@ -6,14 +6,18 @@
     require_once '../models/UserModel.php';
     $account=new UserModel($pdo);
     $data=[];
-    $error=null;
     try{
         $data=$account->getAllUsers('customer');
+        foreach ($data as &$user) {
+            $user['has_order'] = $account->hasOrders($user['id']);
+        }
+  
     }catch(PDOException $e){
-        $error=$e->getMessage();
+       $e->getMessage();
     }
-
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -118,6 +122,11 @@
                         <span class="sub-item">All Orders</span>
                       </a>
                     </li>
+                    <li>
+                      <a href="order-pending.php">
+                        <span class="sub-item">Pending Orders</span>
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </li>
@@ -200,7 +209,14 @@
                               <td><?php echo $account['email'] ?></td>
                               <td><?php echo $account['created_at'] ?></td>
                               <td>
-                                  <a href="#">Delete</a>
+                                  <?php if (!$account['has_order']): ?>
+                                      <a href="customer-delete.php?id=<?= $account['id'] ?>"
+                                        onclick="return confirm('Are you sure to delete this customer account?');">
+                                        Delete
+                                      </a>
+                                  <?php else: ?>
+                                      <span style="color: gray;">Had Orders</span>
+                                  <?php endif; ?>
                               </td>
                             </tr>
                         <?php endforeach; ?>

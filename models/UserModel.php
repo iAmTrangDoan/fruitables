@@ -59,7 +59,7 @@
 
         public function deleteUser($id){
             try{
-                $sql="DELETE * FROM users WHERE id =? ";
+                $sql="DELETE  FROM users WHERE id =? ";
                 $stmt=$this->pdo->prepare($sql);
                 $stmt->bindParam(1,$id,PDO::PARAM_INT);
                 $stmt->execute();
@@ -127,6 +127,15 @@
             } catch(PDOException $e) {
                 throw new Exception("Lỗi lấy danh sách người dùng: " . $e->getMessage());
             }
+        }
+
+        public function hasOrders($userId)
+        {
+            $sql = "SELECT COUNT(*) FROM orders WHERE user_id = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(1, $userId, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchColumn() > 0;
         }
     }
 

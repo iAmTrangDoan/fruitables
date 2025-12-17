@@ -3,12 +3,12 @@
     session_start();
     define('ACCESS_ALLOWED', true);
     require_once '../config/config.php';
-    require_once '../models/UserModel.php';
-    $account=new UserModel($pdo);
+    require_once '../models/OrderModel.php';
+    $orders=new OrderModel($pdo);
     $data=[];
     $error=null;
     try{
-        $data=$account->getAllUsers('admin');
+        $data=$orders->getAllOrders('pending');
     }catch(PDOException $e){
         $error=$e->getMessage();
     }
@@ -176,7 +176,7 @@
             <div class="row">
                 <div class="card">
                   <div class="card-header">
-                    <div class="card-title"><h2><strong>ADMIN</strong></h2></div>
+                    <div class="card-title"><h2>ORDER</h2></div>
                   </div>
                   <div class="card-body">
 
@@ -184,35 +184,25 @@
                       <thead>
                         <tr>
                           <th scope="col">ID</th>
-                          <th scope="col">First Name</th>
-                          <th scope="col">Last Name</th>
-                          <th scope="col">Email</th>
-                          <th scope="col">Created Date</th>
-                          <th scope="col">Handle</th>
+                          <th scope="col">Customer</th>
+                          <th scope="col">Total</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Order Date</th>
+                          <th scope="col">Address</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <?php if($data==null): ?>
-                          <tr>
-                            <p>Chưa có dữ liệu </p>
-                          </tr>
-                        <?php else : ?>
-                        <?php foreach($data as $account): ?>
+                        <?php foreach($data as $order): ?>
                             <tr>
-                              <td><?php echo $account['id'] ?></td>
-                              <td><?php echo $account['first_name'] ?></td>
-                              <td><?php echo $account['last_name'] ?></td>
-                              <td><?php echo $account['email'] ?></td>
-                              <td><?php echo $account['created_at'] ?></td>
-                              <td>
-                                  <a href="admin-delete.php?id=<?= $account['id'] ?>"
-                                        onclick="return confirm('Are you sure to delete this admin account?');">
-                                        Delete
-                                  </a>
-                              </td>
+                            <td><?php echo $order['id'] ?></td>
+                            <td><?php echo $order['first_name']." ".$order['last_name'] ?></td>
+                            <td><?php echo $order['total_amount'] ?></td>
+                            <td><?php echo $order['status'] ?></td>
+                            <td><?php echo $order['order_date'] ?></td>
+                            <td><?php echo $order['shipping_address'] ?></td>
                             </tr>
                         <?php endforeach; ?>
-                        <?php endif; ?>
+                        
                       </tbody>
                     </table>
                   </div>

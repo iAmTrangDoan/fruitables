@@ -9,6 +9,7 @@ $data = [];
 $error = null;
 try {
   $data = $categories->getCategories();
+  
 } catch (PDOException $e) {
   $error = $e->getMessage();
 }

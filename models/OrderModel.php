@@ -1,8 +1,6 @@
 
 <?php
-if (!defined('ACCESS_ALLOWED')) {
-    die('Direct access not allowed');
-}
+
 
 class OrderModel {
     private $pdo;
@@ -92,4 +90,6 @@ class OrderModel {
         $stmt->execute([$orderId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+
 }
