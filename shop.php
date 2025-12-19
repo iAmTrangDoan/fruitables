@@ -219,6 +219,7 @@
                                                     <p><?php echo htmlspecialchars($product['description']); ?></p>
                                                     <div class="mt-auto d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0"><?php echo number_format($product['price']); ?> VNĐ</p>
+                                                        <?php if (isset($_SESSION['user_id'])): ?>
                                                         <form action="add-to-cart.php" method="POST">
                                                             <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
                                                             <button type="submit"
@@ -227,6 +228,13 @@
                                                                 Add to cart
                                                             </button>
                                                         </form>
+                                                        <?php else: ?>
+                                                            <a href="login.php"
+                                                            class="btn border border-secondary rounded-pill px-3 text-primary">
+                                                                <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                                Add to cart
+                                                            </a>
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>

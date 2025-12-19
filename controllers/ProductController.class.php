@@ -43,13 +43,39 @@ class ProductController
 
     public function save()
     {
+        $imagePath = $_POST['old_image'] ?? '';
+
+        // Nếu có upload ảnh mới
+        if (!empty($_FILES['image']['name'])) {
+
+            $uploadDir = __DIR__ . '/../img/products/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
+            }
+
+            $fileName = time() . '_' . basename($_FILES['image']['name']);
+            $targetPath = $uploadDir . $fileName;
+
+            // Kiểm tra định dạng
+            $allowed = ['jpg', 'jpeg', 'png', 'webp'];
+            $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+            if (!in_array($ext, $allowed)) {
+                die('Only JPG, PNG, WEBP allowed');
+            }
+
+            move_uploaded_file($_FILES['image']['tmp_name'], $targetPath);
+
+            // Đường dẫn lưu DB (tính từ root)
+            $imagePath = 'img/products/' . $fileName;
+        }
 
         $data = [
             'name' => $_POST['name'],
             'description' => $_POST['description'],
             'price' => $_POST['price'],
             'stock_quantity' => $_POST['stock_quantity'],
-            'image_url' => $_POST['image_url'],
+            'image_url' => $imagePath,
             'category_id' => $_POST['category_id']
         ];
 

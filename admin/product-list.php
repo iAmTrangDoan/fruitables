@@ -218,7 +218,7 @@
                               <tr>
                               <td><?php echo $product['id'] ?></td>
                               <td><?php echo $product['name'] ?></td>
-                              <td><img src="<?= htmlspecialchars($product['image_url']) ?>" width="200"></td>
+                              <td><img src="/<?= htmlspecialchars($product['image_url']) ?>" width="200"></td>
                               <td><?php echo $product['description'] ?></td>
                               <td><?php echo $product['price'] ?></td>
                               <td><?php echo $product['stock_quantity'] ?></td>

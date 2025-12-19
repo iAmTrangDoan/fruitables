@@ -4,21 +4,21 @@
         die('Direct access not allowed');
     } 
 
-    // $host='localhost';
-    // $dbname='organic_store';
-    // $username='root';
-    // $password='';
+    $host='localhost';
+    $dbname='organic_store';
+    $username='root';
+    $password='';
 
-    $host='sql305.infinityfree.com';
-    $dbname='if0_40280315_organic_store';
-    $username='if0_40280315';
-    $password='Doantrang130613';
+    // $host='sql305.infinityfree.com';
+    // $dbname='if0_40280315_organic_store';
+    // $username='if0_40280315';
+    // $password='Doantrang130613';
     try {
         // Tạo kết nối PDO
         $pdo=new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4",$username,$password);
         // Thiết lập chế độ lỗi
         $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $pdh->query("set names 'utf8'");
+        $pdo->query("set names 'utf8'");
     }catch(PDOException $e){
         // echo"Error Connection".$e->getMessage();
         die("Lỗi kết nối DB: " . $e->getMessage());

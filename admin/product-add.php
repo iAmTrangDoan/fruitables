@@ -246,8 +246,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <input type="text" class="form-control" name="stock_quantity" value="<?= htmlspecialchars($product['stock_quantity'] ?? '') ?>" required>
                             </div>
                              <div class="mb-3">
-                                <label for="img" class="form-label">Image</label>
-                                <input type="text" class="form-control" name="image_url" value="<?= htmlspecialchars($product['image_url'] ?? '') ?>" required>
+                                <!-- <label for="img" class="form-label">Image</label>
+                                <input type="text" class="form-control" name="image_url" value="<?= htmlspecialchars($product['image_url'] ?? '') ?>" required> -->
+                                <label class="form-label">Image</label>
+                                <input type="file" class="form-control" name="image">
+                                
+                                <?php if (!empty($product['image_url'])): ?>
+                                    <img src="../<?= $product['image_url'] ?>" 
+                                        style="width:100px;margin-top:10px;">
+                                    <input type="hidden" name="old_image" value="<?= $product['image_url'] ?>">
+                                <?php endif; ?>
                             </div>
                              <div class="mb-3">
                                 <label for="category" class="form-label">Category</label>
