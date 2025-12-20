@@ -138,6 +138,7 @@
         <div class="container-fluid py-5">
             <div class="container py-5">
                 <h1 class="mb-4">Billing details</h1>
+                <!-- Form Start -->
                 <form action="place-order.php" method="POST">
                     <div class="row g-5">
                         <div class="col-md-12 col-lg-6 col-xl-7">

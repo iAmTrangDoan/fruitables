@@ -142,7 +142,6 @@
                     <div class="col-lg-6">
                         <h3 class="mb-5 display-3 text-primary">Login to Your Account</h3>
 
-                         <!-- Hiển thị lỗi/thành công -->
                         <div id="error-messages" class="mb-3">
                             <?php
                             if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {

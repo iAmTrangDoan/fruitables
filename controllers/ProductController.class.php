@@ -45,7 +45,6 @@ class ProductController
     {
         $imagePath = $_POST['old_image'] ?? '';
 
-        // Nếu có upload ảnh mới
         if (!empty($_FILES['image']['name'])) {
 
             $uploadDir = __DIR__ . '/../img/products/';
@@ -56,7 +55,6 @@ class ProductController
             $fileName = time() . '_' . basename($_FILES['image']['name']);
             $targetPath = $uploadDir . $fileName;
 
-            // Kiểm tra định dạng
             $allowed = ['jpg', 'jpeg', 'png', 'webp'];
             $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
@@ -65,8 +63,6 @@ class ProductController
             }
 
             move_uploaded_file($_FILES['image']['tmp_name'], $targetPath);
-
-            // Đường dẫn lưu DB (tính từ root)
             $imagePath = 'img/products/' . $fileName;
         }
 
